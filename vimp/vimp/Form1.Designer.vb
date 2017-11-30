@@ -35,10 +35,12 @@ Partial Class Form1
         '
         'pbImage
         '
+        Me.pbImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pbImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pbImage.Location = New System.Drawing.Point(343, 36)
         Me.pbImage.Name = "pbImage"
         Me.pbImage.Size = New System.Drawing.Size(333, 313)
+        Me.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.pbImage.TabIndex = 0
         Me.pbImage.TabStop = False
         '
