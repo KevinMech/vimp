@@ -2,6 +2,7 @@
 
 Public Class Form1
     Dim tempImage As String
+    Dim editedImage As String
 
     ''' <summary>
     ''' Used to locate the file for editing the image.
@@ -18,7 +19,7 @@ Public Class Form1
             If tempImage IsNot vbNullString Then
                 My.Computer.FileSystem.DeleteFile(tempImage)
             End If
-            'Create a copy of the image to make edits on
+            'Create a temporary copy of the image to make edits on
             tempImage = Environment.GetEnvironmentVariable("TEMP") + "/vimpedit_" + dialogue.SafeFileName
             My.Computer.FileSystem.CopyFile(dialogue.FileName, tempImage, True)
         End If
@@ -26,8 +27,9 @@ Public Class Form1
 
     Private Sub trkBrightness_Scroll(sender As Object, e As EventArgs) Handles trkBrightness.Scroll
         Dim imagefactory As ImageFactory = New ImageFactory()
-        imagefactory.Load(tempImage)
+        imagefactory.Load(txtDirectory.Text)
         imagefactory.Brightness(trkBrightness.Value)
+        editedImage = Environment.GetEnvironmentVariable("TEMP") + "/vimpedit_image"
         imagefactory.Save(tempImage)
         pbImage.ImageLocation = tempImage
     End Sub

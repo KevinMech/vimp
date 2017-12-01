@@ -102,11 +102,15 @@ Partial Class Form1
         '
         'trkBrightness
         '
+        Me.trkBrightness.LargeChange = 20
         Me.trkBrightness.Location = New System.Drawing.Point(0, 56)
-        Me.trkBrightness.Minimum = -10
+        Me.trkBrightness.Maximum = 100
+        Me.trkBrightness.Minimum = -100
         Me.trkBrightness.Name = "trkBrightness"
         Me.trkBrightness.Size = New System.Drawing.Size(337, 56)
+        Me.trkBrightness.SmallChange = 5
         Me.trkBrightness.TabIndex = 6
+        Me.trkBrightness.TickFrequency = 20
         '
         'Form1
         '
