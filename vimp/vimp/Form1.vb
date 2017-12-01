@@ -1,4 +1,6 @@
-﻿Public Class Form1
+﻿Imports ImageProcessor
+
+Public Class Form1
     Dim tempImage As String
 
     ''' <summary>
@@ -20,5 +22,13 @@
             tempImage = Environment.GetEnvironmentVariable("TEMP") + "/vimpedit_" + dialogue.SafeFileName
             My.Computer.FileSystem.CopyFile(dialogue.FileName, tempImage, True)
         End If
+    End Sub
+
+    Private Sub trkBrightness_Scroll(sender As Object, e As EventArgs) Handles trkBrightness.Scroll
+        Dim imagefactory As ImageFactory = New ImageFactory()
+        imagefactory.Load(tempImage)
+        imagefactory.Brightness(trkBrightness.Value)
+        imagefactory.Save(tempImage)
+        pbImage.ImageLocation = tempImage
     End Sub
 End Class
