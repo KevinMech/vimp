@@ -29,8 +29,8 @@ Partial Class Form1
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.trkBrightness = New System.Windows.Forms.TrackBar()
+        Me.cbBrightness = New System.Windows.Forms.CheckBox()
         CType(Me.pbImage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.trkBrightness, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,17 +91,9 @@ Partial Class Form1
         Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(62, 24)
         Me.AboutToolStripMenuItem.Text = "About"
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 36)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(75, 17)
-        Me.Label1.TabIndex = 5
-        Me.Label1.Text = "Brightness"
-        '
         'trkBrightness
         '
+        Me.trkBrightness.Enabled = False
         Me.trkBrightness.LargeChange = 20
         Me.trkBrightness.Location = New System.Drawing.Point(0, 56)
         Me.trkBrightness.Maximum = 100
@@ -112,13 +104,24 @@ Partial Class Form1
         Me.trkBrightness.TabIndex = 6
         Me.trkBrightness.TickFrequency = 20
         '
+        'cbBrightness
+        '
+        Me.cbBrightness.AutoSize = True
+        Me.cbBrightness.Enabled = False
+        Me.cbBrightness.Location = New System.Drawing.Point(12, 36)
+        Me.cbBrightness.Name = "cbBrightness"
+        Me.cbBrightness.Size = New System.Drawing.Size(97, 21)
+        Me.cbBrightness.TabIndex = 7
+        Me.cbBrightness.Text = "Brightness"
+        Me.cbBrightness.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(688, 391)
+        Me.Controls.Add(Me.cbBrightness)
         Me.Controls.Add(Me.trkBrightness)
-        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.btnBrowse)
         Me.Controls.Add(Me.txtDirectory)
         Me.Controls.Add(Me.pbImage)
@@ -142,6 +145,6 @@ Partial Class Form1
     Friend WithEvents FileToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ImageToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents Label1 As Label
     Friend WithEvents trkBrightness As TrackBar
+    Friend WithEvents cbBrightness As CheckBox
 End Class
