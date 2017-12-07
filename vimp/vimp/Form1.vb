@@ -2,7 +2,13 @@
 
 Public Class Form1
     Dim imagefactory As ImageFactory = New ImageFactory()
+    Dim edits As Dictionary(Of ImageEdits, Integer) = New Dictionary(Of ImageEdits, Integer)
     Dim tempImage As String
+
+    Enum ImageEdits
+        Brightness
+        Contrast
+    End Enum
 
     ''' <summary>
     ''' Used to locate the file for editing the image.
@@ -20,31 +26,10 @@ Public Class Form1
                 My.Computer.FileSystem.DeleteFile(tempImage)
             End If
             'Create a temporary copy of the image to make edits on
-            enableCheckboxes()
             tempImage = Environment.GetEnvironmentVariable("TEMP") + "/vimpedit_" + dialogue.SafeFileName
             My.Computer.FileSystem.CopyFile(dialogue.FileName, tempImage, True)
+            enableCheckboxes()
         End If
-    End Sub
-
-    ''' <summary>
-    ''' Adjusts the brightness of the image using a trackbar
-    ''' </summary>
-    ''' <param name="sender">sender</param>
-    ''' <param name="e">event</param>
-    Private Sub trkBrightness_Scroll(sender As Object, e As EventArgs) Handles trkBrightness.Scroll
-        ImageFactory.Load(txtDirectory.Text)
-        ImageFactory.Brightness(trkBrightness.Value)
-        editedImage = Environment.GetEnvironmentVariable("TEMP") + "/vimpedit_image"
-        ImageFactory.Save(tempImage)
-        pbImage.ImageLocation = tempImage
-    End Sub
-
-    Private Sub trkContrast_Scroll(sender As Object, e As EventArgs) Handles trkContrast.Scroll
-        imagefactory.Load(txtDirectory.Text)
-        imagefactory.Contrast(trkContrast.Value)
-        editedImage = Environment.GetEnvironmentVariable("TEMP") + "/vimpedit_image"
-        imagefactory.Save(tempImage)
-        pbImage.ImageLocation = tempImage
     End Sub
 
     ''' <summary>
@@ -54,8 +39,10 @@ Public Class Form1
     ''' <param name="e">event</param>
     Private Sub cbBrightness_CheckedChanged(sender As Object, e As EventArgs) Handles cbBrightness.CheckedChanged
         If cbBrightness.Checked Then
+            edits.Add(ImageEdits.Brightness, trkBrightness.Value)
             trkBrightness.Enabled = True
         Else
+            edits.Remove(ImageEdits.Brightness)
             trkBrightness.Enabled = False
         End If
     End Sub
@@ -67,8 +54,10 @@ Public Class Form1
     ''' <param name="e">event</param>
     Private Sub cbContrast_CheckedChanged(sender As Object, e As EventArgs) Handles cbContrast.CheckedChanged
         If cbContrast.Checked Then
+            edits.Add(ImageEdits.Contrast, trkContrast.Value)
             trkContrast.Enabled = True
         Else
+            edits.Remove(ImageEdits.Contrast)
             trkContrast.Enabled = False
         End If
     End Sub
@@ -81,4 +70,40 @@ Public Class Form1
         cbContrast.Enabled = True
     End Sub
 
+    ''' <summary>
+    ''' Adjusts the brightness of the image using a trackbar
+    ''' </summary>
+    ''' <param name="sender">sender</param>
+    ''' <param name="e">event</param>
+    Private Sub trkBrightness_Scroll(sender As Object, e As EventArgs) Handles trkBrightness.Scroll
+        edits(ImageEdits.Brightness) = trkBrightness.Value
+        updateImage()
+    End Sub
+
+    ''' <summary>
+    ''' Adjusts the contrast of the image using a trackbar
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub trkContrast_Scroll(sender As Object, e As EventArgs) Handles trkContrast.Scroll
+        edits(ImageEdits.Contrast) = trkContrast.Value
+        updateImage()
+    End Sub
+
+    ''' <summary>
+    ''' Updates the temporary image shown in imagebox before final save
+    ''' </summary>
+    Private Sub updateImage()
+        imagefactory.Load(txtDirectory.Text)
+        'For each edit made by user, apply the effect to the temporary image 
+        For Each edit In edits
+            If edit.Key = ImageEdits.Brightness Then
+                imagefactory.Brightness(edit.Value)
+            ElseIf edit.Key = ImageEdits.Contrast Then
+                imagefactory.Contrast(edit.Value)
+            End If
+        Next
+        imagefactory.Save(tempImage)
+        pbImage.ImageLocation = tempImage
+    End Sub
 End Class
