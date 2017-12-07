@@ -1,6 +1,7 @@
 ﻿Imports ImageProcessor
 
 Public Class Form1
+    Dim imagefactory As ImageFactory = New ImageFactory()
     Dim tempImage As String
 
     ''' <summary>
@@ -31,9 +32,16 @@ Public Class Form1
     ''' <param name="sender">sender</param>
     ''' <param name="e">event</param>
     Private Sub trkBrightness_Scroll(sender As Object, e As EventArgs) Handles trkBrightness.Scroll
-        Dim imagefactory As ImageFactory = New ImageFactory()
+        ImageFactory.Load(txtDirectory.Text)
+        ImageFactory.Brightness(trkBrightness.Value)
+        editedImage = Environment.GetEnvironmentVariable("TEMP") + "/vimpedit_image"
+        ImageFactory.Save(tempImage)
+        pbImage.ImageLocation = tempImage
+    End Sub
+
+    Private Sub trkContrast_Scroll(sender As Object, e As EventArgs) Handles trkContrast.Scroll
         imagefactory.Load(txtDirectory.Text)
-        imagefactory.Brightness(trkBrightness.Value)
+        imagefactory.Contrast(trkContrast.Value)
         editedImage = Environment.GetEnvironmentVariable("TEMP") + "/vimpedit_image"
         imagefactory.Save(tempImage)
         pbImage.ImageLocation = tempImage
@@ -53,9 +61,24 @@ Public Class Form1
     End Sub
 
     ''' <summary>
+    ''' Checks if contrast checkbox is checked, and enables/disables the trackbar accordingly
+    ''' </summary>
+    ''' <param name="sender">sender</param>
+    ''' <param name="e">event</param>
+    Private Sub cbContrast_CheckedChanged(sender As Object, e As EventArgs) Handles cbContrast.CheckedChanged
+        If cbContrast.Checked Then
+            trkContrast.Enabled = True
+        Else
+            trkContrast.Enabled = False
+        End If
+    End Sub
+
+    ''' <summary>
     ''' Enable all checkboxes in the form
     ''' </summary>
     Private Sub enableCheckboxes()
         cbBrightness.Enabled = True
+        cbContrast.Enabled = True
     End Sub
+
 End Class

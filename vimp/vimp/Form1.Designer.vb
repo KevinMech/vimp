@@ -31,9 +31,12 @@ Partial Class Form1
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.trkBrightness = New System.Windows.Forms.TrackBar()
         Me.cbBrightness = New System.Windows.Forms.CheckBox()
+        Me.cbContrast = New System.Windows.Forms.CheckBox()
+        Me.trkContrast = New System.Windows.Forms.TrackBar()
         CType(Me.pbImage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.trkBrightness, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.trkContrast, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pbImage
@@ -115,11 +118,37 @@ Partial Class Form1
         Me.cbBrightness.Text = "Brightness"
         Me.cbBrightness.UseVisualStyleBackColor = True
         '
+        'cbContrast
+        '
+        Me.cbContrast.AutoSize = True
+        Me.cbContrast.Enabled = False
+        Me.cbContrast.Location = New System.Drawing.Point(12, 135)
+        Me.cbContrast.Name = "cbContrast"
+        Me.cbContrast.Size = New System.Drawing.Size(83, 21)
+        Me.cbContrast.TabIndex = 9
+        Me.cbContrast.Text = "Contrast"
+        Me.cbContrast.UseVisualStyleBackColor = True
+        '
+        'trkContrast
+        '
+        Me.trkContrast.Enabled = False
+        Me.trkContrast.LargeChange = 20
+        Me.trkContrast.Location = New System.Drawing.Point(0, 155)
+        Me.trkContrast.Maximum = 100
+        Me.trkContrast.Minimum = -100
+        Me.trkContrast.Name = "trkContrast"
+        Me.trkContrast.Size = New System.Drawing.Size(337, 56)
+        Me.trkContrast.SmallChange = 5
+        Me.trkContrast.TabIndex = 8
+        Me.trkContrast.TickFrequency = 20
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(688, 391)
+        Me.Controls.Add(Me.cbContrast)
+        Me.Controls.Add(Me.trkContrast)
         Me.Controls.Add(Me.cbBrightness)
         Me.Controls.Add(Me.trkBrightness)
         Me.Controls.Add(Me.btnBrowse)
@@ -133,6 +162,7 @@ Partial Class Form1
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         CType(Me.trkBrightness, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.trkContrast, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -147,4 +177,6 @@ Partial Class Form1
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents trkBrightness As TrackBar
     Friend WithEvents cbBrightness As CheckBox
+    Friend WithEvents cbContrast As CheckBox
+    Friend WithEvents trkContrast As TrackBar
 End Class
