@@ -41,9 +41,11 @@ Public Class Form1
         If cbBrightness.Checked Then
             edits.Add(ImageEdits.Brightness, trkBrightness.Value)
             trkBrightness.Enabled = True
+            updateImage()
         Else
             edits.Remove(ImageEdits.Brightness)
             trkBrightness.Enabled = False
+            updateImage()
         End If
     End Sub
 
@@ -56,9 +58,11 @@ Public Class Form1
         If cbContrast.Checked Then
             edits.Add(ImageEdits.Contrast, trkContrast.Value)
             trkContrast.Enabled = True
+            updateImage()
         Else
             edits.Remove(ImageEdits.Contrast)
             trkContrast.Enabled = False
+            updateImage()
         End If
     End Sub
 
