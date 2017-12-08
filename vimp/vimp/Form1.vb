@@ -91,6 +91,7 @@ Public Class MainMenu
         cbBrightness.Enabled = True
         cbContrast.Enabled = True
         cbSaturation.Enabled = True
+        grpSave.Enabled = True
     End Sub
 
     ''' <summary>

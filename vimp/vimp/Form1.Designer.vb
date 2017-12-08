@@ -38,11 +38,16 @@ Partial Class MainMenu
         Me.lblBrightness = New System.Windows.Forms.Label()
         Me.lblContrast = New System.Windows.Forms.Label()
         Me.lblSaturation = New System.Windows.Forms.Label()
+        Me.grpSave = New System.Windows.Forms.GroupBox()
+        Me.btnSave = New System.Windows.Forms.Button()
+        Me.txtName = New System.Windows.Forms.TextBox()
+        Me.cmboFormat = New System.Windows.Forms.ComboBox()
         CType(Me.pbImage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.trkBrightness, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.trkContrast, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.trkSaturation, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.grpSave.SuspendLayout()
         Me.SuspendLayout()
         '
         'pbImage
@@ -199,11 +204,51 @@ Partial Class MainMenu
         Me.lblSaturation.TabIndex = 14
         Me.lblSaturation.Text = "0%"
         '
+        'grpSave
+        '
+        Me.grpSave.Controls.Add(Me.btnSave)
+        Me.grpSave.Controls.Add(Me.txtName)
+        Me.grpSave.Controls.Add(Me.cmboFormat)
+        Me.grpSave.Enabled = False
+        Me.grpSave.Location = New System.Drawing.Point(12, 249)
+        Me.grpSave.Name = "grpSave"
+        Me.grpSave.Size = New System.Drawing.Size(314, 130)
+        Me.grpSave.TabIndex = 15
+        Me.grpSave.TabStop = False
+        Me.grpSave.Text = "Save"
+        '
+        'btnSave
+        '
+        Me.btnSave.Location = New System.Drawing.Point(9, 76)
+        Me.btnSave.Name = "btnSave"
+        Me.btnSave.Size = New System.Drawing.Size(299, 34)
+        Me.btnSave.TabIndex = 16
+        Me.btnSave.Text = "Save"
+        Me.btnSave.UseVisualStyleBackColor = True
+        '
+        'txtName
+        '
+        Me.txtName.Location = New System.Drawing.Point(9, 34)
+        Me.txtName.Name = "txtName"
+        Me.txtName.Size = New System.Drawing.Size(225, 22)
+        Me.txtName.TabIndex = 18
+        '
+        'cmboFormat
+        '
+        Me.cmboFormat.FormattingEnabled = True
+        Me.cmboFormat.Items.AddRange(New Object() {".png", ".jpg", ".jpeg"})
+        Me.cmboFormat.Location = New System.Drawing.Point(240, 33)
+        Me.cmboFormat.Name = "cmboFormat"
+        Me.cmboFormat.Size = New System.Drawing.Size(68, 24)
+        Me.cmboFormat.TabIndex = 16
+        Me.cmboFormat.Text = ".png"
+        '
         'MainMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(688, 391)
+        Me.Controls.Add(Me.grpSave)
         Me.Controls.Add(Me.lblSaturation)
         Me.Controls.Add(Me.lblContrast)
         Me.Controls.Add(Me.lblBrightness)
@@ -227,6 +272,8 @@ Partial Class MainMenu
         CType(Me.trkBrightness, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.trkContrast, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.trkSaturation, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.grpSave.ResumeLayout(False)
+        Me.grpSave.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -248,4 +295,8 @@ Partial Class MainMenu
     Friend WithEvents lblBrightness As Label
     Friend WithEvents lblContrast As Label
     Friend WithEvents lblSaturation As Label
+    Friend WithEvents grpSave As GroupBox
+    Friend WithEvents cmboFormat As ComboBox
+    Friend WithEvents txtName As TextBox
+    Friend WithEvents btnSave As Button
 End Class
