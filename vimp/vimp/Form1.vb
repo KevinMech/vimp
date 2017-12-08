@@ -2,12 +2,13 @@
 
 Public Class Form1
     Dim imagefactory As ImageFactory = New ImageFactory()
-    Dim edits As Dictionary(Of ImageEdits, Integer) = New Dictionary(Of ImageEdits, Integer)
+    Dim edits As Dictionary(Of ImageEffect, Integer) = New Dictionary(Of ImageEffect, Integer)
     Dim tempImage As String
 
-    Enum ImageEdits
+    Enum ImageEffect
         Brightness
         Contrast
+        Saturation
     End Enum
 
     ''' <summary>
@@ -39,11 +40,11 @@ Public Class Form1
     ''' <param name="e">event</param>
     Private Sub cbBrightness_CheckedChanged(sender As Object, e As EventArgs) Handles cbBrightness.CheckedChanged
         If cbBrightness.Checked Then
-            edits.Add(ImageEdits.Brightness, trkBrightness.Value)
+            edits.Add(ImageEffect.Brightness, trkBrightness.Value)
             trkBrightness.Enabled = True
             updateImage()
         Else
-            edits.Remove(ImageEdits.Brightness)
+            edits.Remove(ImageEffect.Brightness)
             trkBrightness.Enabled = False
             updateImage()
         End If
@@ -56,12 +57,29 @@ Public Class Form1
     ''' <param name="e">event</param>
     Private Sub cbContrast_CheckedChanged(sender As Object, e As EventArgs) Handles cbContrast.CheckedChanged
         If cbContrast.Checked Then
-            edits.Add(ImageEdits.Contrast, trkContrast.Value)
+            edits.Add(ImageEffect.Contrast, trkContrast.Value)
             trkContrast.Enabled = True
             updateImage()
         Else
-            edits.Remove(ImageEdits.Contrast)
+            edits.Remove(ImageEffect.Contrast)
             trkContrast.Enabled = False
+            updateImage()
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' Checks if saturation checkbox is checked, and enables/disables the trackbar accordingly
+    ''' </summary>
+    ''' <param name="sender">sender</param>
+    ''' <param name="e">event</param>
+    Private Sub cbSaturation_CheckedChanged(sender As Object, e As EventArgs) Handles cbSaturation.CheckedChanged
+        If cbSaturation.Checked Then
+            edits.Add(ImageEffect.Saturation, trkSaturation.Value)
+            trkSaturation.Enabled = True
+            updateImage()
+        Else
+            edits.Remove(ImageEffect.Saturation)
+            trkSaturation.Enabled = False
             updateImage()
         End If
     End Sub
@@ -72,6 +90,7 @@ Public Class Form1
     Private Sub enableCheckboxes()
         cbBrightness.Enabled = True
         cbContrast.Enabled = True
+        cbSaturation.Enabled = True
     End Sub
 
     ''' <summary>
@@ -80,17 +99,27 @@ Public Class Form1
     ''' <param name="sender">sender</param>
     ''' <param name="e">event</param>
     Private Sub trkBrightness_Scroll(sender As Object, e As EventArgs) Handles trkBrightness.Scroll
-        edits(ImageEdits.Brightness) = trkBrightness.Value
+        edits(ImageEffect.Brightness) = trkBrightness.Value
         updateImage()
     End Sub
 
     ''' <summary>
     ''' Adjusts the contrast of the image using a trackbar
     ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
+    ''' <param name="sender">sender</param>
+    ''' <param name="e">event</param>
     Private Sub trkContrast_Scroll(sender As Object, e As EventArgs) Handles trkContrast.Scroll
-        edits(ImageEdits.Contrast) = trkContrast.Value
+        edits(ImageEffect.Contrast) = trkContrast.Value
+        updateImage()
+    End Sub
+
+    ''' <summary>
+    ''' Adjusts the saturation of the image using a trackbar
+    ''' </summary>
+    ''' <param name="sender">sender</param>
+    ''' <param name="e">event</param>
+    Private Sub trkSaturation_Scroll(sender As Object, e As EventArgs) Handles trkSaturation.Scroll
+        edits(ImageEffect.Saturation) = trkSaturation.Value
         updateImage()
     End Sub
 
@@ -101,13 +130,16 @@ Public Class Form1
         imagefactory.Load(txtDirectory.Text)
         'For each edit made by user, apply the effect to the temporary image 
         For Each edit In edits
-            If edit.Key = ImageEdits.Brightness Then
+            If edit.Key = ImageEffect.Brightness Then
                 imagefactory.Brightness(edit.Value)
-            ElseIf edit.Key = ImageEdits.Contrast Then
+            ElseIf edit.Key = ImageEffect.Contrast Then
                 imagefactory.Contrast(edit.Value)
+            ElseIf edit.Key = ImageEffect.Saturation Then
+                imagefactory.Saturation(edit.Value)
             End If
         Next
         imagefactory.Save(tempImage)
         pbImage.ImageLocation = tempImage
     End Sub
+
 End Class

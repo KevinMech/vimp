@@ -33,10 +33,13 @@ Partial Class Form1
         Me.cbBrightness = New System.Windows.Forms.CheckBox()
         Me.cbContrast = New System.Windows.Forms.CheckBox()
         Me.trkContrast = New System.Windows.Forms.TrackBar()
+        Me.cbSaturation = New System.Windows.Forms.CheckBox()
+        Me.trkSaturation = New System.Windows.Forms.TrackBar()
         CType(Me.pbImage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.trkBrightness, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.trkContrast, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.trkSaturation, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pbImage
@@ -122,7 +125,7 @@ Partial Class Form1
         '
         Me.cbContrast.AutoSize = True
         Me.cbContrast.Enabled = False
-        Me.cbContrast.Location = New System.Drawing.Point(12, 135)
+        Me.cbContrast.Location = New System.Drawing.Point(12, 110)
         Me.cbContrast.Name = "cbContrast"
         Me.cbContrast.Size = New System.Drawing.Size(83, 21)
         Me.cbContrast.TabIndex = 9
@@ -133,7 +136,7 @@ Partial Class Form1
         '
         Me.trkContrast.Enabled = False
         Me.trkContrast.LargeChange = 20
-        Me.trkContrast.Location = New System.Drawing.Point(0, 155)
+        Me.trkContrast.Location = New System.Drawing.Point(0, 130)
         Me.trkContrast.Maximum = 100
         Me.trkContrast.Minimum = -100
         Me.trkContrast.Name = "trkContrast"
@@ -142,11 +145,37 @@ Partial Class Form1
         Me.trkContrast.TabIndex = 8
         Me.trkContrast.TickFrequency = 20
         '
+        'cbSaturation
+        '
+        Me.cbSaturation.AutoSize = True
+        Me.cbSaturation.Enabled = False
+        Me.cbSaturation.Location = New System.Drawing.Point(12, 185)
+        Me.cbSaturation.Name = "cbSaturation"
+        Me.cbSaturation.Size = New System.Drawing.Size(95, 21)
+        Me.cbSaturation.TabIndex = 11
+        Me.cbSaturation.Text = "Saturation"
+        Me.cbSaturation.UseVisualStyleBackColor = True
+        '
+        'trkSaturation
+        '
+        Me.trkSaturation.Enabled = False
+        Me.trkSaturation.LargeChange = 20
+        Me.trkSaturation.Location = New System.Drawing.Point(0, 205)
+        Me.trkSaturation.Maximum = 100
+        Me.trkSaturation.Minimum = -100
+        Me.trkSaturation.Name = "trkSaturation"
+        Me.trkSaturation.Size = New System.Drawing.Size(337, 56)
+        Me.trkSaturation.SmallChange = 5
+        Me.trkSaturation.TabIndex = 10
+        Me.trkSaturation.TickFrequency = 20
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(688, 391)
+        Me.Controls.Add(Me.cbSaturation)
+        Me.Controls.Add(Me.trkSaturation)
         Me.Controls.Add(Me.cbContrast)
         Me.Controls.Add(Me.trkContrast)
         Me.Controls.Add(Me.cbBrightness)
@@ -163,6 +192,7 @@ Partial Class Form1
         Me.MenuStrip1.PerformLayout()
         CType(Me.trkBrightness, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.trkContrast, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.trkSaturation, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -179,4 +209,6 @@ Partial Class Form1
     Friend WithEvents cbBrightness As CheckBox
     Friend WithEvents cbContrast As CheckBox
     Friend WithEvents trkContrast As TrackBar
+    Friend WithEvents cbSaturation As CheckBox
+    Friend WithEvents trkSaturation As TrackBar
 End Class
