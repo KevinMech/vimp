@@ -18,23 +18,29 @@ Public Class MainMenu
     ''' <param name="sender">sender</param>
     ''' <param name="e">event</param>
     Private Sub btnBrowse_Click(sender As Object, e As EventArgs) Handles btnBrowse.Click
-        Dim dialogue As OpenFileDialog = New OpenFileDialog
-        dialogue.Title = "Select Image to Edit"
-        If dialogue.ShowDialog() = DialogResult.OK Then
-            pbImage.Image = Image.FromFile(dialogue.FileName)
-            txtDirectory.Text = dialogue.FileName
-            'Clean up temporary image if one already exists
-            If tempImage IsNot vbNullString Then
-                My.Computer.FileSystem.DeleteFile(tempImage)
+        Try
+            Dim dialogue As OpenFileDialog = New OpenFileDialog
+            'Setup dialogue
+            dialogue.Title = "Select Image to Edit"
+            dialogue.Filter = "PNG Files (*.png)|*.png|Jpg files (*.jpg)|*.jpg|Jpeg files (*.jpeg)|*.jpeg"
+            If dialogue.ShowDialog() = DialogResult.OK Then
+                pbImage.Image = Image.FromFile(dialogue.FileName)
+                txtDirectory.Text = dialogue.FileName
+                'Clean up temporary image if one already exists
+                If tempImage IsNot vbNullString Then
+                    My.Computer.FileSystem.DeleteFile(tempImage)
+                End If
+                'Create a temporary copy of the image to make edits on
+                tempImage = Environment.GetEnvironmentVariable("TEMP") + "/vimpedit_" + dialogue.SafeFileName
+                My.Computer.FileSystem.CopyFile(dialogue.FileName, tempImage, True)
+                'Add file details to save box
+                txtName.Text = Path.GetFileNameWithoutExtension(dialogue.SafeFileName)
+                cmboFormat.Text = Path.GetExtension(dialogue.SafeFileName)
+                enableCheckboxes()
             End If
-            'Create a temporary copy of the image to make edits on
-            tempImage = Environment.GetEnvironmentVariable("TEMP") + "/vimpedit_" + dialogue.SafeFileName
-            My.Computer.FileSystem.CopyFile(dialogue.FileName, tempImage, True)
-            'Add file details to save box
-            txtName.Text = Path.GetFileNameWithoutExtension(dialogue.SafeFileName)
-            cmboFormat.Text = Path.GetExtension(dialogue.SafeFileName)
-            enableCheckboxes()
-        End If
+        Catch ex As Exception
+            MessageBox.Show(Me, "An error has occured while trying to load your image. Please load a different image or try again!" + Environment.NewLine + "Error Message: " + ex.Message, "Loading image error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
     ''' <summary>
