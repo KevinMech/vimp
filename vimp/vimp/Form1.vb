@@ -1,6 +1,6 @@
 ﻿Imports ImageProcessor
 
-Public Class Form1
+Public Class MainMenu
     Dim imagefactory As ImageFactory = New ImageFactory()
     Dim edits As Dictionary(Of ImageEffect, Integer) = New Dictionary(Of ImageEffect, Integer)
     Dim tempImage As String
