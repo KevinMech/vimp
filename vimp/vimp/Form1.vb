@@ -1,4 +1,5 @@
 ﻿Imports ImageProcessor
+Imports ImageProcessor.Imaging.Formats
 Imports System.IO
 
 Public Class MainMenu
@@ -18,11 +19,11 @@ Public Class MainMenu
     ''' <param name="sender">sender</param>
     ''' <param name="e">event</param>
     Private Sub btnBrowse_Click(sender As Object, e As EventArgs) Handles btnBrowse.Click
+        Dim dialogue As OpenFileDialog = New OpenFileDialog
+        'Configure openfiledialog object
+        dialogue.Title = "Select Image to Edit"
+        dialogue.Filter = "PNG Files (*.png)|*.png|Jpg files (*.jpg)|*.jpg|Jpeg files (*.jpeg)|*.jpeg"
         Try
-            Dim dialogue As OpenFileDialog = New OpenFileDialog
-            'Setup dialogue
-            dialogue.Title = "Select Image to Edit"
-            dialogue.Filter = "PNG Files (*.png)|*.png|Jpg files (*.jpg)|*.jpg|Jpeg files (*.jpeg)|*.jpeg"
             If dialogue.ShowDialog() = DialogResult.OK Then
                 pbImage.Image = Image.FromFile(dialogue.FileName)
                 txtDirectory.Text = dialogue.FileName
@@ -154,5 +155,23 @@ Public Class MainMenu
         Next
         imagefactory.Save(tempImage)
         pbImage.ImageLocation = tempImage
+    End Sub
+
+    ''' <summary>
+    ''' Saves edited file to the directory specified when save button is clicked
+    ''' </summary>
+    ''' <param name="sender">sender</param>
+    ''' <param name="e">event</param>
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        Dim dialogue = New FolderBrowserDialog()
+        'Configure folderbrowserdialog
+        dialogue.Description = "Choose directory to save file into"
+        If dialogue.ShowDialog() = DialogResult.OK Then
+            'Save file once the user selects the directory and clicks ok
+            Dim savepath As String = dialogue.SelectedPath + "\" + txtName.Text + cmboFormat.Text
+            imagefactory.Load(tempImage)
+            imagefactory.Save(savepath)
+            MessageBox.Show("Image saved successfully!")
+        End If
     End Sub
 End Class
