@@ -100,6 +100,7 @@ Public Class Form1
     ''' <param name="e">event</param>
     Private Sub trkBrightness_Scroll(sender As Object, e As EventArgs) Handles trkBrightness.Scroll
         edits(ImageEffect.Brightness) = trkBrightness.Value
+        lblBrightness.Text = trkBrightness.Value.ToString() + "%"
         updateImage()
     End Sub
 
@@ -110,6 +111,7 @@ Public Class Form1
     ''' <param name="e">event</param>
     Private Sub trkContrast_Scroll(sender As Object, e As EventArgs) Handles trkContrast.Scroll
         edits(ImageEffect.Contrast) = trkContrast.Value
+        lblContrast.Text = trkContrast.Value.ToString() + "%"
         updateImage()
     End Sub
 
@@ -120,6 +122,7 @@ Public Class Form1
     ''' <param name="e">event</param>
     Private Sub trkSaturation_Scroll(sender As Object, e As EventArgs) Handles trkSaturation.Scroll
         edits(ImageEffect.Saturation) = trkSaturation.Value
+        lblSaturation.Text = trkSaturation.Value.ToString() + "%"
         updateImage()
     End Sub
 

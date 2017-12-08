@@ -35,6 +35,9 @@ Partial Class Form1
         Me.trkContrast = New System.Windows.Forms.TrackBar()
         Me.cbSaturation = New System.Windows.Forms.CheckBox()
         Me.trkSaturation = New System.Windows.Forms.TrackBar()
+        Me.lblBrightness = New System.Windows.Forms.Label()
+        Me.lblContrast = New System.Windows.Forms.Label()
+        Me.lblSaturation = New System.Windows.Forms.Label()
         CType(Me.pbImage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.trkBrightness, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -169,11 +172,41 @@ Partial Class Form1
         Me.trkSaturation.TabIndex = 10
         Me.trkSaturation.TickFrequency = 20
         '
+        'lblBrightness
+        '
+        Me.lblBrightness.AutoSize = True
+        Me.lblBrightness.Location = New System.Drawing.Point(298, 37)
+        Me.lblBrightness.Name = "lblBrightness"
+        Me.lblBrightness.Size = New System.Drawing.Size(28, 17)
+        Me.lblBrightness.TabIndex = 12
+        Me.lblBrightness.Text = "0%"
+        '
+        'lblContrast
+        '
+        Me.lblContrast.AutoSize = True
+        Me.lblContrast.Location = New System.Drawing.Point(298, 114)
+        Me.lblContrast.Name = "lblContrast"
+        Me.lblContrast.Size = New System.Drawing.Size(28, 17)
+        Me.lblContrast.TabIndex = 13
+        Me.lblContrast.Text = "0%"
+        '
+        'lblSaturation
+        '
+        Me.lblSaturation.AutoSize = True
+        Me.lblSaturation.Location = New System.Drawing.Point(298, 189)
+        Me.lblSaturation.Name = "lblSaturation"
+        Me.lblSaturation.Size = New System.Drawing.Size(28, 17)
+        Me.lblSaturation.TabIndex = 14
+        Me.lblSaturation.Text = "0%"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(688, 391)
+        Me.Controls.Add(Me.lblSaturation)
+        Me.Controls.Add(Me.lblContrast)
+        Me.Controls.Add(Me.lblBrightness)
         Me.Controls.Add(Me.cbSaturation)
         Me.Controls.Add(Me.trkSaturation)
         Me.Controls.Add(Me.cbContrast)
@@ -211,4 +244,7 @@ Partial Class Form1
     Friend WithEvents trkContrast As TrackBar
     Friend WithEvents cbSaturation As CheckBox
     Friend WithEvents trkSaturation As TrackBar
+    Friend WithEvents lblBrightness As Label
+    Friend WithEvents lblContrast As Label
+    Friend WithEvents lblSaturation As Label
 End Class
