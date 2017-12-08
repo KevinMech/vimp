@@ -1,4 +1,5 @@
 ﻿Imports ImageProcessor
+Imports System.IO
 
 Public Class MainMenu
     Dim imagefactory As ImageFactory = New ImageFactory()
@@ -29,6 +30,9 @@ Public Class MainMenu
             'Create a temporary copy of the image to make edits on
             tempImage = Environment.GetEnvironmentVariable("TEMP") + "/vimpedit_" + dialogue.SafeFileName
             My.Computer.FileSystem.CopyFile(dialogue.FileName, tempImage, True)
+            'Add file details to save box
+            txtName.Text = Path.GetFileNameWithoutExtension(dialogue.SafeFileName)
+            cmboFormat.Text = Path.GetExtension(dialogue.SafeFileName)
             enableCheckboxes()
         End If
     End Sub
@@ -145,5 +149,4 @@ Public Class MainMenu
         imagefactory.Save(tempImage)
         pbImage.ImageLocation = tempImage
     End Sub
-
 End Class
