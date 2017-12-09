@@ -174,4 +174,18 @@ Public Class MainMenu
             MessageBox.Show("Image saved successfully!")
         End If
     End Sub
+
+    Private Sub HelpToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HelpToolStripMenuItem.Click
+        MessageBox.Show(Me, "To use this program, follow these steps: " + Environment.NewLine +
+                        "1. Load an image by clicking on the browse button on the bottom of the form" + Environment.NewLine +
+                        "2. Select an effect to apply to the image by using the checkboxes on the left hand side" + Environment.NewLine +
+                        "3. Use the slider to adjust the selected effect" + Environment.NewLine +
+                        "4. When finished, select the save button to save your image to your local machine", "Help!")
+    End Sub
+
+    Private Sub CreditsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CreditsToolStripMenuItem.Click
+        MessageBox.Show(Me, "Author: Kevin Mella-chew" + Environment.NewLine + "https://github.com/KevinMech/vimp" +
+                        Environment.NewLine + Environment.NewLine +
+                        "ImageProcessor Library Created by: James Jackson-South" + Environment.NewLine + "https://github.com/JimBobSquarePants/ImageProcessor", "Credits")
+    End Sub
 End Class

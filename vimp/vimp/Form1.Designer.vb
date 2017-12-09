@@ -26,8 +26,6 @@ Partial Class MainMenu
         Me.txtDirectory = New System.Windows.Forms.TextBox()
         Me.btnBrowse = New System.Windows.Forms.Button()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.trkBrightness = New System.Windows.Forms.TrackBar()
         Me.cbBrightness = New System.Windows.Forms.CheckBox()
@@ -42,6 +40,8 @@ Partial Class MainMenu
         Me.btnSave = New System.Windows.Forms.Button()
         Me.txtName = New System.Windows.Forms.TextBox()
         Me.cmboFormat = New System.Windows.Forms.ComboBox()
+        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CreditsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.pbImage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.trkBrightness, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,6 +65,7 @@ Partial Class MainMenu
         '
         Me.txtDirectory.Location = New System.Drawing.Point(424, 356)
         Me.txtDirectory.Name = "txtDirectory"
+        Me.txtDirectory.ReadOnly = True
         Me.txtDirectory.Size = New System.Drawing.Size(252, 22)
         Me.txtDirectory.TabIndex = 2
         '
@@ -80,27 +81,16 @@ Partial Class MainMenu
         'MenuStrip1
         '
         Me.MenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ImageToolStripMenuItem, Me.AboutToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(688, 28)
         Me.MenuStrip1.TabIndex = 4
         Me.MenuStrip1.Text = "MenuStrip1"
         '
-        'FileToolStripMenuItem
-        '
-        Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
-        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(44, 24)
-        Me.FileToolStripMenuItem.Text = "File"
-        '
-        'ImageToolStripMenuItem
-        '
-        Me.ImageToolStripMenuItem.Name = "ImageToolStripMenuItem"
-        Me.ImageToolStripMenuItem.Size = New System.Drawing.Size(63, 24)
-        Me.ImageToolStripMenuItem.Text = "Image"
-        '
         'AboutToolStripMenuItem
         '
+        Me.AboutToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HelpToolStripMenuItem, Me.CreditsToolStripMenuItem})
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
         Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(62, 24)
         Me.AboutToolStripMenuItem.Text = "About"
@@ -243,6 +233,18 @@ Partial Class MainMenu
         Me.cmboFormat.TabIndex = 16
         Me.cmboFormat.Text = ".png"
         '
+        'HelpToolStripMenuItem
+        '
+        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
+        Me.HelpToolStripMenuItem.Text = "Help"
+        '
+        'CreditsToolStripMenuItem
+        '
+        Me.CreditsToolStripMenuItem.Name = "CreditsToolStripMenuItem"
+        Me.CreditsToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
+        Me.CreditsToolStripMenuItem.Text = "Credits"
+        '
         'MainMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -283,8 +285,6 @@ Partial Class MainMenu
     Friend WithEvents txtDirectory As TextBox
     Friend WithEvents btnBrowse As Button
     Friend WithEvents MenuStrip1 As MenuStrip
-    Friend WithEvents FileToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ImageToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents trkBrightness As TrackBar
     Friend WithEvents cbBrightness As CheckBox
@@ -299,4 +299,6 @@ Partial Class MainMenu
     Friend WithEvents cmboFormat As ComboBox
     Friend WithEvents txtName As TextBox
     Friend WithEvents btnSave As Button
+    Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CreditsToolStripMenuItem As ToolStripMenuItem
 End Class
