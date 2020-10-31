@@ -5,8 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:vimp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Visual Image Manipulation Program" Height="280" Width="500">
+    <Grid Background="#FFE4E4E4">
+        <StackPanel Margin="10, 10, 10, 10" Width="200" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal">
+                <Label>Brightness</Label>
+                <CheckBox x:Name="chkBrightness" Margin="65 7 0 0">Enabled</CheckBox>
+            </StackPanel>
+            <Slider x:Name="sldBrightness" IsEnabled="False"/>
+            <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                <Label>Contrast</Label>
+                <CheckBox x:Name="chkContrast" Margin="75 7 0 0">Enabled</CheckBox>
+            </StackPanel>
+            <Slider x:Name="sldContrast" IsEnabled="False"/>
+            <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                <Label>Saturation</Label>
+                <CheckBox x:Name="chkSaturation" Margin="65 7 0 0">Enabled</CheckBox>
+            </StackPanel>
+            <Slider x:Name="sldSaturation" IsEnabled="False"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="200" Margin="10, 10, 10, 10">
+            <Image Source="/_pqjjdqb.jpg"/>
+            <Button x:Name="btnBrowse">Browse</Button>
+        </StackPanel>
+
 
     </Grid>
 </Window>
