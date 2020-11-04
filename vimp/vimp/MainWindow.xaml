@@ -25,8 +25,8 @@
             <Slider x:Name="sldSaturation" IsEnabled="False"/>
         </StackPanel>
         <StackPanel HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="200" Margin="10, 10, 10, 10">
-            <Image Source="/_pqjjdqb.jpg"/>
-            <Button x:Name="btnBrowse">Browse</Button>
+            <Image x:Name="pbImage" Source="/_pqjjdqb.jpg"/>
+            <Button x:Name="btnBrowse" Click="btnBrowse_Click" Cursor="Hand">Browse</Button>
         </StackPanel>
 
 
