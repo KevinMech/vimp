@@ -10,25 +10,23 @@
         <StackPanel Margin="10, 10, 10, 10" Width="200" HorizontalAlignment="Left">
             <StackPanel Orientation="Horizontal">
                 <Label>Brightness</Label>
-                <CheckBox x:Name="chkBrightness" Margin="65 7 0 0">Enabled</CheckBox>
+                <CheckBox x:Name="chkBrightness" Margin="65 7 0 0" Checked="chkBrightness_Checked" Unchecked="chkBrightness_Unchecked">Enabled</CheckBox>
             </StackPanel>
-            <Slider x:Name="sldBrightness" IsEnabled="False"/>
+            <Slider x:Name="trkBrightness" IsEnabled="False" Maximum="2" ValueChanged="trkBrightness_ValueChanged"/>
             <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
                 <Label>Contrast</Label>
                 <CheckBox x:Name="chkContrast" Margin="75 7 0 0">Enabled</CheckBox>
             </StackPanel>
-            <Slider x:Name="sldContrast" IsEnabled="False"/>
+            <Slider x:Name="trkContrast" IsEnabled="False"/>
             <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
                 <Label>Saturation</Label>
                 <CheckBox x:Name="chkSaturation" Margin="65 7 0 0">Enabled</CheckBox>
             </StackPanel>
-            <Slider x:Name="sldSaturation" IsEnabled="False"/>
+            <Slider x:Name="trkSaturation" IsEnabled="False"/>
         </StackPanel>
         <StackPanel HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="200" Margin="10, 10, 10, 10">
             <Image x:Name="pbImage" Source="/_pqjjdqb.jpg"/>
             <Button x:Name="btnBrowse" Click="btnBrowse_Click" Cursor="Hand">Browse</Button>
         </StackPanel>
-
-
     </Grid>
 </Window>
