@@ -156,6 +156,46 @@ namespace vimp
         }
 
         /// <summary>
+        /// Checks if saturation checkbox is checked, and enables the trackbar accordingly
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void chkSaturation_Checked(object sender, RoutedEventArgs e)
+        {
+            edits.Add(ImageEffect.Saturation, 1);
+            trkSaturation.Value = 1;
+            trkSaturation.IsEnabled = true;
+            updateEffects(tempImage);
+            updateImage(tempImage);
+        }
+
+        /// <summary>
+        /// Checks if saturation checkbox is unchecked, and disables the trackbar accordingly
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
+        private void chkSaturation_Unchecked(object sender, RoutedEventArgs e)
+        {
+            edits.Remove(ImageEffect.Saturation);
+            trkSaturation.IsEnabled = false;
+            updateEffects(tempImage);
+            updateImage(tempImage);
+        }
+
+        /// <summary>
+        /// Updates image real time when saturation trackbar is changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void trkSaturation_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            edits[ImageEffect.Saturation] = trkSaturation.Value;
+            updateEffects(tempImage);
+            updateImage(tempImage);
+        }
+
+        /// <summary>
         /// Draws the effects onto temporary image before final save
         /// </summary>
         /// <param name="tempLocation">file location of the temp image to save to</param>
@@ -170,6 +210,8 @@ namespace vimp
                         image.Mutate(x => x.Brightness((float)edits[ImageEffect.Brightness]));
                     if (edits.ContainsKey(ImageEffect.Contrast))
                         image.Mutate(x => x.Contrast((float)edits[ImageEffect.Contrast]));
+                    if (edits.ContainsKey(ImageEffect.Saturation))
+                        image.Mutate(x => x.Saturate((float)edits[ImageEffect.Saturation]));
                 }
                 image.Save(tempLocation);
             }
