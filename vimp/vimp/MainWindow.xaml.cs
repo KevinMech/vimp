@@ -66,6 +66,10 @@ namespace vimp
                     tempImage = Environment.GetEnvironmentVariable("TEMP") + "\\vimpedit_" + openFile.SafeFileName;
                     File.Copy(openFile.FileName, tempImage, true);
                     origImage = openFile.FileName;
+                    // Enable Checkboxes
+                    chkBrightness.IsEnabled = true;
+                    chkSaturation.IsEnabled = true;
+                    chkContrast.IsEnabled = true;
                 }
         }
             catch (Exception ex)
@@ -81,8 +85,8 @@ namespace vimp
         /// <param name="e"></param>
         private void chkBrightness_Checked(object sender, RoutedEventArgs e)
         {
-            edits.Add(ImageEffect.Brightness, 50);
-            trkBrightness.Value = 50;
+            edits.Add(ImageEffect.Brightness, 1);
+            trkBrightness.Value = 1;
             trkBrightness.IsEnabled = true;
             updateEffects(tempImage);
             updateImage(tempImage);
@@ -101,9 +105,52 @@ namespace vimp
             updateImage(tempImage);
         }
 
+        /// <summary>
+        /// Updates image real time when brightness trackbar is changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void trkBrightness_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             edits[ImageEffect.Brightness] = trkBrightness.Value;
+            updateEffects(tempImage);
+            updateImage(tempImage);
+        }
+
+        /// <summary>
+        /// Checks if contrast checkbox is checked, and enables the trackbar accordingly
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void chkContrast_Checked(object sender, RoutedEventArgs e)
+        {
+            edits.Add(ImageEffect.Contrast, 1);
+            trkContrast.Value = 1;
+            trkContrast.IsEnabled = true;
+            updateEffects(tempImage);
+            updateImage(tempImage);
+        }
+
+        /// <summary>
+        /// Checks if constrast checkbox is unchecked, and disables the trackbar accordingly
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void chkContrast_Unchecked(object sender, RoutedEventArgs e)
+        {
+            edits.Remove(ImageEffect.Contrast);
+            trkContrast.IsEnabled = false;
+            updateEffects(tempImage);
+            updateImage(tempImage);
+        }
+        /// <summary>
+        /// Updates image real time when constrast trackbar is changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void trkContrast_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            edits[ImageEffect.Contrast] = trkContrast.Value;
             updateEffects(tempImage);
             updateImage(tempImage);
         }
@@ -121,6 +168,8 @@ namespace vimp
                 {
                     if (edits.ContainsKey(ImageEffect.Brightness))
                         image.Mutate(x => x.Brightness((float)edits[ImageEffect.Brightness]));
+                    if (edits.ContainsKey(ImageEffect.Contrast))
+                        image.Mutate(x => x.Contrast((float)edits[ImageEffect.Contrast]));
                 }
                 image.Save(tempLocation);
             }

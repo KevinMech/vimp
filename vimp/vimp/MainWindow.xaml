@@ -5,27 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:vimp"
         mc:Ignorable="d"
-        Title="Visual Image Manipulation Program" Height="280" Width="500">
+        Title="Visual Image Manipulation Program" Height="280" Width="500" ResizeMode="CanResize">
     <Grid Background="#FFE4E4E4">
         <StackPanel Margin="10, 10, 10, 10" Width="200" HorizontalAlignment="Left">
             <StackPanel Orientation="Horizontal">
                 <Label>Brightness</Label>
-                <CheckBox x:Name="chkBrightness" Margin="65 7 0 0" Checked="chkBrightness_Checked" Unchecked="chkBrightness_Unchecked">Enabled</CheckBox>
+                <CheckBox x:Name="chkBrightness" Margin="65 7 0 0" Checked="chkBrightness_Checked" Unchecked="chkBrightness_Unchecked" IsEnabled="False">Enabled</CheckBox>
             </StackPanel>
-            <Slider x:Name="trkBrightness" IsEnabled="False" Maximum="2" ValueChanged="trkBrightness_ValueChanged"/>
+            <Slider x:Name="trkBrightness" ValueChanged="trkBrightness_ValueChanged" IsEnabled="False" LargeChange="0.1" TickPlacement="BottomRight" TickFrequency="0.1" Maximum="2"/>
             <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
                 <Label>Contrast</Label>
-                <CheckBox x:Name="chkContrast" Margin="75 7 0 0">Enabled</CheckBox>
+                <CheckBox x:Name="chkContrast" Margin="75 7 0 0" Checked="chkContrast_Checked" Unchecked="chkContrast_Unchecked" IsEnabled="False">Enabled</CheckBox>
             </StackPanel>
-            <Slider x:Name="trkContrast" IsEnabled="False"/>
+            <Slider x:Name="trkContrast" ValueChanged="trkContrast_ValueChanged" IsEnabled="False" Maximum="2" LargeChange="0.1" TickFrequency="0.1" TickPlacement="BottomRight"/>
             <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
                 <Label>Saturation</Label>
-                <CheckBox x:Name="chkSaturation" Margin="65 7 0 0">Enabled</CheckBox>
+                <CheckBox x:Name="chkSaturation" Margin="65 7 0 0" IsEnabled="False">Enabled</CheckBox>
             </StackPanel>
             <Slider x:Name="trkSaturation" IsEnabled="False"/>
         </StackPanel>
         <StackPanel HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="200" Margin="10, 10, 10, 10">
-            <Image x:Name="pbImage" Source="/_pqjjdqb.jpg"/>
+            <Image x:Name="pbImage" Source="/_pqjjdqb.jpg" Stretch="UniformToFill"/>
             <Button x:Name="btnBrowse" Click="btnBrowse_Click" Cursor="Hand">Browse</Button>
         </StackPanel>
     </Grid>
